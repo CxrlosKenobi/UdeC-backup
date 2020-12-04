@@ -1,3 +1,7 @@
+##                          ##
+#  Creado por @CxrlosKenobi  #
+##                          ##
+
 from colorama import init
 from colorama import Fore
 import os
@@ -6,29 +10,42 @@ import string
 import random
 init(autoreset=True)
 
-os.system('clear') # Limpiando la terminal antes de comenzar
-key = 'AEBCDEabcde' # Para verificación o testeo
+def cleaner():
+    os.system('clear')
 
-def ans(R, i): # R(Revisar); i(Current question)
-    current = i
-    user[i] = input('')#random.choice(response)
-    return user
-user = ans()
+def main():
+    #Pantallita de bienvenida; Créditos; Ascii; etc
+    init()
+    for i in range(1,66):
+        hoja(user)
+        Scott(user, i)
+        cleaner()
 
-def Scott(i): # Quien recibe de input las respuestas; Mandarlas a un CSV file
-    current = i
+def init():
     user = dict()
+    for i in range(1,66):
+        user[i] = '-'
+    return user
+user = init()
+
+def Scott(user, i): # Quien recibe de input las respuestas; Mandarlas a un CSV file
+    current = i
+    key = 'AEBCDEabcde' # Para verificación o testeo
     print(Fore.WHITE + '\n\tResponder con [ABCDE] e ingresa R para cambiar una respuesta')
     ans = input(Fore.WHITE + 'Respuesta\n> ')
     if (ans == 'R') and (current > 1): # Corregir respuesta
         r = int(input(Fore.YELLOW + '\tCorregir la número\n> '))
+        cleaner()
+        hoja(user)
         r_ans = input(Fore.WHITE + f'Corección ({r})\n> ')
         user[r] = r_ans
         print(Fore.GREEN + '[ ok ] Corregido')
-        time.sleep(0.3)
+        time.sleep(0.4)
     elif ans in key: # Registrar respuesta
         user[i] = ans
         return user
+    #else:
+    #    user[i] = Fore.YELLOW + '-'
 
 def hoja(user):
     print('\n')
@@ -46,4 +63,5 @@ def hoja(user):
             {row}) '+ user[row], end='')
     print('\n\n')
 
-hoja(user)
+if __name__ == '__main__':
+    main()
