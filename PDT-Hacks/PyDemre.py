@@ -14,15 +14,10 @@ init(autoreset=True)
 def cleaner():
     os.system('clear')
 
-def init(sheet):
-    user = dict()
-
+def init(sheet, user):
     for i in range(1,66):
         user[i] = '-'
         sheet[i] = 'none'
-    for i in range(5):
-        time.sleep(0.2)
-        print(Fore.GREEN + '[ ok ] Loading...' + Fore.WHITE)
     #gnome-terminal --title="Dev Server" --command="bash -c 'python3 test.py; $SHELL'"
     #os.system('gnome-terminal --title="Timer by @kenobi" --command="bash -c 'python3 test.py'"')
     #os.system('gnome-terminal /home/kenobi/GitHub/CodeUtilities/PDT-Hacks/time.command')
@@ -30,7 +25,8 @@ def init(sheet):
 
 # Full-range variables
 sheet = dict()
-user = init(sheet)
+user = dict()
+user_checked = user
 
 def Scott(user, i): # Quien recibe de input las respuestas; Mandarlas a un CSV file
     current = i
@@ -104,12 +100,10 @@ def init_backup(user):
 def end_backup():
     os.system('rm -rf responses_backup.csv')
 
-def verify(sheet):
-    cleaner()
-    print(Fore.GREEN + '\## PAUTA ##' + Fore.WHITE)
+def verify(sheet, user):
     for i in range(1, 66):
         sheets(sheet, i)
-        ans = input('Ans:\n> ')
+        ans = input(f'({i}) Respuesta :\n> ')
         sheet[i] = ans
         cleaner()
     with open('sheet.csv', 'w') as f:
@@ -122,25 +116,44 @@ def verify(sheet):
         ran = random.randint(1,66)
         piloto.append(ran)
     for i in range(1, 66):
-        if i in piloto:
-            pass
-        elif user[i] == sheet[i]:
+        if user[i] == sheet[i]:
             buenas.append(i)
         elif user[i] != sheet[i]:
-            malas.append(i)
+                    malas.append(i)
+        elif i in piloto:
+            pass
+    for i in range(1,66):
+        if i in piloto:
+            user_checked[i] = '-'
+            pass
+        elif i in buenas:
+            user_checked[i] = (Back.GREEN + user_checked[i] + Style.RESET_ALL)
+        elif i in malas:
+            user_checked[i] = (Back.RED + user_checked[i] + Style.RESET_ALL)
+    print('\nBuenas : ' + Back.GREEN + f'{len(buenas)}' + Style.RESET_ALL)
+    print('Malas  : ' + Back.RED + f'{len(malas)}' + Style.RESET_ALL)
+    print('Piloto : ' + '-')
+    return user_checked, buenas, malas
 
-    user_checked = user
-    os.system('clear')
-    print('testing')
-    time.sleep(1)
-    for i in user_checked:
-        print(buenas)
-
+def uChecked(user_checked):
+    tab = '      ' # Var aux
+    for row in range(1,16): # Preguntas de la 1-60
+        for j in range(2,21,30):
+            print(f'\
+            {str(row).zfill(2)}) '+ user_checked[row] +f'{tab}\
+            {row+15}) '+ user_checked[row+15] + f'{tab}\
+            {row+30}) '+ user_checked[row+30] + f'{tab}\
+            {row+45}) '+ user_checked[row+45] + f'{tab}')
+    print('')
+    for row in range(61, 66): # Preguntas de la 61-65
+        print(f'\
+            {row}) '+ user_checked[row], end='')
+    print('\n')
 
 def main():
     #Pantallita de bienvenida; Créditos; Ascii; etc
     cleaner()
-    init(sheet)
+    init(sheet, user)
     for i in range(1,66):
         hoja(user, i)
         Scott(user, i)
@@ -148,7 +161,9 @@ def main():
         cleaner()
     saver(user)
     end_backup()
-    verify(user)
+    cleaner()
+    verify(sheet, user)
+    uChecked(user_checked)
 
 if __name__ == '__main__':
     main()
