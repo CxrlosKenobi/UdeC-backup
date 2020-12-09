@@ -2,13 +2,19 @@
 #  Creado por @CxrlosKenobi  #
 ##     Para ensayos PDT      #
 
+#Agregar Timer y conversor de puntajes según asignaturas
+#Luego perfeccionar y optimizar código para sacar la Release 1.0
 from colorama import init, Fore, Back, Style
+from scoresTable import *
 import os
 import time
 import string
 import random
 import csv
-import random
+
+#import cgitb
+#cgitb.enable()
+#cgitb.enable(display=0, logdir="/path/to/logdir")
 init(autoreset=True)
 
 def cleaner():
@@ -17,7 +23,8 @@ def cleaner():
 def init(sheet, user):
     for i in range(1,66):
         user[i] = '-'
-        sheet[i] = 'none'
+        sheet[i] = '!'
+    print('\t')
     #gnome-terminal --title="Dev Server" --command="bash -c 'python3 test.py; $SHELL'"
     #os.system('gnome-terminal --title="Timer by @kenobi" --command="bash -c 'python3 test.py'"')
     #os.system('gnome-terminal /home/kenobi/GitHub/CodeUtilities/PDT-Hacks/time.command')
@@ -101,11 +108,14 @@ def end_backup():
     os.system('rm -rf responses_backup.csv')
 
 def verify(sheet, user):
+    tab = '                '
     for i in range(1, 66):
+        print('\t### PAUTA DE RESPUESTAS ###')
         sheets(sheet, i)
         ans = input(f'({i}) Respuesta :\n> ')
         sheet[i] = ans
         cleaner()
+
     with open('sheet.csv', 'w') as f:
         w = csv.writer(f)
         w.writerows(sheet.items())
@@ -130,9 +140,10 @@ def verify(sheet, user):
             user_checked[i] = (Back.GREEN + user_checked[i] + Style.RESET_ALL)
         elif i in malas:
             user_checked[i] = (Back.RED + user_checked[i] + Style.RESET_ALL)
-    print('\nBuenas : ' + Back.GREEN + f'{len(buenas)}' + Style.RESET_ALL)
-    print('Malas  : ' + Back.RED + f'{len(malas)}' + Style.RESET_ALL)
-    print('Piloto : ' + '-')
+    print('\nBuenas : ' + Back.GREEN + f'{len(buenas)}' + Style.RESET_ALL, end='')
+    print(f'{tab}Malas  : ' + Back.RED + f'{len(malas)}' + Style.RESET_ALL, end='')
+    print(f'{tab}Piloto : ' + '-')
+    print(f'\nPuntaje: {score[len(buenas)]}\n')
     return user_checked, buenas, malas
 
 def uChecked(user_checked):
