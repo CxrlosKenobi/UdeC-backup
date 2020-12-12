@@ -2,7 +2,7 @@
 #  Creado por @CxrlosKenobi  #
 ##     Para ensayos PDT      #
 
-#Agregar Timer y conversor de puntajes según asignaturas
+#Agregar Timer
 #Luego perfeccionar y optimizar código para sacar la Release 1.0
 from colorama import init, Fore, Back, Style
 from scoresTable import *
@@ -109,16 +109,26 @@ def end_backup():
 
 def verify(sheet, user):
     tab = '                '
-    for i in range(1, 66):
-        print('\t### PAUTA DE RESPUESTAS ###')
-        sheets(sheet, i)
-        ans = input(f'({i}) Respuesta :\n> ')
-        sheet[i] = ans
+    prev = input('\n¿Usar hoja de respuestas anterior? (Y/N)\n> ')
+    if prev == 'Y':
+        with open('sheet.csv') as f:
+            lis = [line.split(',') for line in f]
+            for i, x in enumerate(lis):
+                sheet[i] = f'{x[1]}'
+    elif prev == 'N':
         cleaner()
-
-    with open('sheet.csv', 'w') as f:
-        w = csv.writer(f)
-        w.writerows(sheet.items())
+        for i in range(1, 66):
+            print('\t### PAUTA DE RESPUESTAS ###')
+            sheets(sheet, i)
+            ans = input(f'({i}) Respuesta :\n> ')
+            sheet[i] = ans
+            cleaner()
+            with open('sheet.csv', 'w') as f:
+                w = csv.writer(f)
+                w.writerows(sheet.items())
+    else:
+        print('\nExiting...')
+        time.sleep(0.3)
     buenas = []
     malas = []
     piloto = []
@@ -126,16 +136,15 @@ def verify(sheet, user):
         ran = random.randint(1,66)
         piloto.append(ran)
     for i in range(1, 66):
-        if user[i] == sheet[i]:
+        if i in piloto:
+            pass
+        elif user[i] == sheet[i]:
             buenas.append(i)
         elif user[i] != sheet[i]:
-                    malas.append(i)
-        elif i in piloto:
-            pass
+            malas.append(i)
     for i in range(1,66):
         if i in piloto:
             user_checked[i] = '-'
-            pass
         elif i in buenas:
             user_checked[i] = (Back.GREEN + user_checked[i] + Style.RESET_ALL)
         elif i in malas:
@@ -144,7 +153,7 @@ def verify(sheet, user):
     print(f'{tab}Malas  : ' + Back.RED + f'{len(malas)}' + Style.RESET_ALL, end='')
     print(f'{tab}Piloto : ' + '-')
     print(f'\nPuntaje: {score[len(buenas)]}\n')
-    return user_checked, buenas, malas
+    return user_checked
 
 def uChecked(user_checked):
     tab = '      ' # Var aux
