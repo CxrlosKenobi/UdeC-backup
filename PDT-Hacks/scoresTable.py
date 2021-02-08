@@ -1,7 +1,6 @@
 # scoresTable.py>
-
 score = dict()
-for i in range(0,61):
+for i in range(0,66):
     score[i] = '-'
 score[0] = 150
 score[1] = 180
