@@ -4,7 +4,7 @@ import csv
 import os
 
 # -all feed w/ instaloader profile <username>
-dir = '~/home/kenobi/GitHub/CodeUtilities/Coderground/files/downloaded-posts'
+dir = '~/home/kenobi/GitHub/CodeUtilities/IG-post-downloader/files/downloaded-posts'
 with open('tokens.csv', 'r') as tokens:
     csv_reader = csv.reader(tokens)
     for row in csv_reader:
