@@ -30,3 +30,18 @@ def main():
     print(f'Perimetro = {distancia*360} / {abs(alfa-beta)}')
     print(f'Radio = {perimetro} / {2*pi}\n')
 main()
+
+## Ejemplo:
+#         Ingrese la distancia entre ciudades (km)
+# Distancia: 300
+#
+#         Medicion 1:
+# Alto: 30
+# Sombra: 28
+# 
+#         Medicion 2:
+# Alto: 33
+# Sombra: 34
+# 
+#         Radio de la Tierra:
+# > 6073.690140153813km.
