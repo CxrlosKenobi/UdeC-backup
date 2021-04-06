@@ -1,4 +1,5 @@
 from math import *
+import time
 
 def main():
     # Distancia en km de ciudades
@@ -23,5 +24,9 @@ def main():
     radio = perimetro/(2*pi)
 
     print(f'\n\tRadio de la Tierra: \n> {radio}km.')
-
+    time.sleep(2)
+    print('\n\tVariables utilizadas en el cálculo, para su verificación:')
+    print(f'alfa: {alfa} ; beta: {beta}')
+    print(f'Perimetro = {distancia*360} / {abs(alfa-beta)}')
+    print(f'Radio = {perimetro} / {2*pi}\n')
 main()
