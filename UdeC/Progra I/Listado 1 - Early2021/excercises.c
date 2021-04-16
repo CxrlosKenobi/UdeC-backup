@@ -187,7 +187,7 @@ int main(){
 			break;
 		case 9:
 			nueve();
-			break:
+			break;
 	}
 	return 0;
 }
