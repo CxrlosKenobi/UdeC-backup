@@ -106,7 +106,7 @@ void ocho(){
 	printf("\nIngrese un número del  1 al 10: ");
 	scanf("%d", &n);
 
-	if (n < 1|| n > 10){
+	if (n <= 0 || n >= 11){
 		exit(0);
 	}
 
