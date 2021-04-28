@@ -75,3 +75,4 @@ void loop()
         lcd.clear();
     }
 }
+//Solucion unica
