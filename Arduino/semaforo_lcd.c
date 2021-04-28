@@ -51,9 +51,9 @@ void loop()
             lcd.print(i+1);
             lcd.setCursor(0, 0);
             led(verde, false);
-            delay(1000);
+            delay(500);
             led(verde, true);
-            delay(1000);
+            delay(500);
         }
         lcd.clear();
 
@@ -74,3 +74,4 @@ void loop()
         lcd.clear();
     }
 }
+//Solucion unica
