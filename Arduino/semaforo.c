@@ -28,9 +28,9 @@ void loop()
         led(amarillo, true);
         for (int i = 0; i < 4; i++){    
             led(verde, false);
-            delay(1000);
+            delay(500);
             led(verde, true);
-            delay(1000);
+            delay(500);
         }
 
         led(verde, false);
