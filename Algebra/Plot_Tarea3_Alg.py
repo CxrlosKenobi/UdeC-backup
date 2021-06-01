@@ -46,6 +46,15 @@ inverse = go.Scatter(
 	mode='lines',
 	line={'color': '#E75151'}
 	)
+straight_line = go.Scatter(
+	name='x=y',
+	x=Domain,
+	y=Domain,
+	mode='lines',
+	line={'dash': 'dash',
+		'width': 1.4,
+		'color': '#808080'}
+	)
 intersection = go.Scatter(
 		name='Intersección',
 		line={'color': '#808080'},
@@ -72,11 +81,13 @@ intersection2 = go.Scatter(
 			symbol='circle'
 		),
 	)
+
 if plot_1:
 	data = [equation, intersection]
 
 if plot_4:
-	data = [equation, inverse, intersection, intersection2]
+	data = [equation, inverse, straight_line, intersection, intersection2]
+
 layout = go.Layout(
 	title=('Cantidad de Individuos de cierta especie t años luego de haber sido introducida en un hábitat controlado.'),
 	autosize=True,
@@ -88,7 +99,6 @@ layout = go.Layout(
 )
 
 fig = go.Figure(data=data, layout=layout)
-#fig.add_vline(x=10, line_width=2, line_dash='dash')
 fig.add_vline(x=0, line_width=2, line_dash='dash')
 fig.add_hline(y=140, line_width=2, line_dash='dash')
 if plot_4:
