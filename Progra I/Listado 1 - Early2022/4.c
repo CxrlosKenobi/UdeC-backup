@@ -1,10 +1,11 @@
+// Solución propia
 #include <stdio.h>
 
 int main() {
   int i, j;
-  printf("i: ");
+  printf("num1> ");
   scanf("%d", &i);
-  printf("j: ");
+  printf("num2> ");
   scanf("%d", &j);
 
   printf("\n");
