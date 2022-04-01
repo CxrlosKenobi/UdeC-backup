@@ -1,5 +1,4 @@
 // Solución propia
-//
 #include <stdio.h>
 
 #define false 0
