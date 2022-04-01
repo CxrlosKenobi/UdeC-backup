@@ -1,18 +1,16 @@
+// Solución propia
 #include <stdio.h>
 
 int main() {
   int i, j;
-  printf("> ");
+  printf("num1> ");
   scanf("%d", &i);
-  printf("> ");
+  printf("num2> ");
   scanf("%d", &j);
 
-  printf("\n");
-  if (i < j) {
-    printf("%d\n", i * 2);
-  } else {
-    printf("%d\n", j * 2);
-  }
+  (i < j) 
+    ? printf("%d\n", i * 2)
+    : printf("%d\n", j * 2);
 
   return 0;
 }
