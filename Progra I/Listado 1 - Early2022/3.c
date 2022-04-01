@@ -1,13 +1,14 @@
+// Solución propia
 #include <stdio.h>
 #include <math.h> /* Run with -lm */
 
 int main() {
   int i, j, k;
-  printf("> ");
+  printf("num1> ");
   scanf("%d", &i);
-  printf("> ");
+  printf("num2> ");
   scanf("%d", &j);
-  printf("> ");
+  printf("num3> ");
   scanf("%d", &k);
 
   printf("\n");
