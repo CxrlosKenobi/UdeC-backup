@@ -1,3 +1,4 @@
+// Solución propia
 #include <stdio.h>
 
 int main () {

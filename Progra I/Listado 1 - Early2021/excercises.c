@@ -167,6 +167,8 @@ void nueve(){
 	// Y si no lo está...
 	printf("\nno contenido\n");
 }
+
+
 int main(){
 	int ans;
 	printf("\nSelecciona el ejercicio que quieras ejecutar: (4, 6, 7, 8, 9)\n> ");
