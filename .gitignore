@@ -1,2 +1,6 @@
 .vscode
 *.out
+
+aux.py
+input.txt
+Progra/Aux*
